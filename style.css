@@ -1,0 +1,268 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+body{
+    font-family: sans-serif;
+}
+.container{
+    min-height: 100vh;
+    width: 100%;
+    background: #485461;
+    background-image: linear-gradient(135deg, #485461 0%,#28313b 74%);
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
+.container .navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    height: 3rem;
+}
+.container .navbar .menu{
+    max-width: 72rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+.container .navbar .menu .logo{
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 4rem;
+}
+.container .navbar .menu .logo span{
+    font-weight: 300;
+}
+.hamburger-menu{
+    width: 3rem;
+    height: 4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bar{
+    width: 1.9rem;
+    height: 0.1rem;
+    border-radius: 2px;
+    background-color: #eee;
+    position: relative;
+}
+.bar:after,
+.bar:before{
+    content: " ";
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: #eee;
+    transition: .5s;
+}
+.bar:before{
+    transform: translateY(-9px);
+}
+.bar:after{
+    transform: translateY(9px);
+}
+.main{
+    position: relative;
+    width: 100%;
+    left: 0;
+    overflow: hidden;
+    z-index: 5;
+    transform-origin: left;
+    transform-style: preserve-3d;
+    transition: 1.5s;
+}
+header{
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    background: url(image/photo_2021-03-15_22-39-07.jpg) no-repeat top center/cover;
+}
+.main header .overlay{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(43, 51, 59, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+}
+.main header .overlay .inner{
+    position: absolute;
+    max-width: 30rem;
+    color: #fff;
+    padding: 0 2rem;
+    text-align: center;
+}
+.title{
+    font-size: 2.7rem;
+    margin-bottom: 10px;
+}
+.p-text{
+    margin-bottom: 20px;
+}
+.btn{
+    padding: 0.4rem 1.6rem;
+    background-color: #1179ef;
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.active .bar{
+    transform: rotate(360deg);
+    background-color: none;
+    width: 0;
+    height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.active .bar:before{
+    transform: translateY(0) rotate(-45deg);
+}
+.active .bar:after{
+    transform: translateY(0) rotate(45deg);
+}
+.active .main{
+    animation: main-animation 0.5s ease;
+    transform: perspective(1300px) rotateY(20deg) translateZ(310px) scale(0.5);
+    cursor: pointer;
+}
+@keyframes main-animation {
+    from{
+        transform: translate(0);
+        
+    }
+    to{
+        transform: perspective(1300px) rotateY(20deg) translateZ(310px) scale(0.5);
+    }
+}
+.links{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+ul{
+    list-style: none;
+}
+.links ul li a{
+    text-decoration: none;
+    color: #eee;
+    padding: 0.7em 0;
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: hide 0.5s forwards ease 0.2;
+    z-index: 3;
+}
+ .links ul li a:hover{
+    color: #fff;
+}
+.container .active .links ul li a{
+    animation: appear 0.5s forwards ease 0.2 var(--i);
+    z-index: 0;
+}
+@keyframes appear {
+    from{
+        opacity: 0;
+        transform: translateY(10px);  
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@keyframes hide{
+    from{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    to{
+        opacity: 0;
+        transform: translateY(10px);  
+    }
+    
+}
+.shadow{
+   position: absolute;
+   width: 100%;
+   height: 100vh;
+   top: 0;
+   left: 0;
+   transform-style: preserve-3d;
+   transform-origin: left;
+   background-color: white;  
+   transition: 0.5s;
+}
+.shadow.one{
+    z-index: -1;
+    opacity: 0.15;
+    
+}
+.shadow.two{
+    z-index: -2;
+    opacity: 0.1;
+}
+.container.active .shadow.one{
+    animation: shadow-one 0.6s ease-out;
+    transform: perspective(1300px) rotateY(20deg) translateZ(215px) scale(0.5);
+}
+@keyframes shadow-one {
+    0%{
+        transform: translate(0);
+    }
+    5%{
+        transform: perspective(1300px) rotateY(20deg) translateZ(310px) scale(0.5);  
+    }
+    100%{
+        transform: perspective(1300px) rotateY(20deg) translateZ(215px) scale(0.5);
+    }
+}
+.container.active .shadow.two{
+    animation: shadow-two 0.6s ease-out;
+    transform: perspective(1300px) rotateY(20deg) translateZ(120px) scale(0.5);
+}
+@keyframes shadow-two {
+    0%{
+        transform: translate(0);
+    }
+    20%{
+        transform: perspective(1300px) rotateY(20deg) translateZ(310px) scale(0.5);  
+    }
+    100%{
+        transform: perspective(1300px) rotateY(20deg) translateZ(120px) scale(0.5);
+    }
+}
+.container.active .main:hover +.shadow.one{
+    transform: perspective(1300px) rotateY(20deg) translateZ(230px) scale(0.5); 
+} 
+.container.active .main:hover{
+    transform: perspective(1300px) rotateY(20deg) translateZ(340px) scale(0.5); 
+} 
